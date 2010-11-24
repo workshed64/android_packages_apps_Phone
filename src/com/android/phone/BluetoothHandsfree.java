@@ -1471,9 +1471,7 @@ public class BluetoothHandsfree {
             } else {
                 // CALL_CONF state is not from merging two calls, but from
                 // accepting the second call. In this case first will be on
-                // hold in most cases but in some cases its already merged.
-                // However, we will follow the common case and the test case
-                // as per Bluetooth SIG PTS
+                // hold.
                 mpty = 0;
             }
         } else {
