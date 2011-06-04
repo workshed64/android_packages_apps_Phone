@@ -39,6 +39,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.CommandException;
+import com.android.internal.telephony.Phone.IPVersion;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -514,6 +515,10 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         return mPhone.getServiceState().getState() != ServiceState.STATE_POWER_OFF;
     }
 
+    public boolean isModemPowerSave() {
+        return mPhone.isModemPowerSave();
+    }
+
     public void toggleRadioOnOff() {
         enforceModifyPermission();
         mPhone.setRadioPower(!isRadioOn());
@@ -524,6 +529,11 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
             toggleRadioOnOff();
         }
         return true;
+    }
+
+    public void setRilPowerOff() {
+        enforceModifyPermission();
+        mPhone.setRilPowerOff();
     }
 
     public boolean enableDataConnectivity() {
@@ -808,8 +818,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * {@hide}
      * Returns Interface name
      */
-    public String getActiveInterfaceName(String apnType) {
-        return mPhone.getInterfaceName(apnType);
+    public String getActiveInterfaceName(String apnType, String ipv) {
+        return mPhone.getInterfaceName(apnType, Enum.valueOf(IPVersion.class, ipv));
     }
 
 
@@ -817,16 +827,16 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
      * {@hide}
      * Returns Ip address
      */
-    public String getActiveIpAddress(String apnType) {
-        return mPhone.getIpAddress(apnType);
+    public String getActiveIpAddress(String apnType, String ipv) {
+        return mPhone.getIpAddress(apnType, Enum.valueOf(IPVersion.class, ipv));
     }
 
     /**
      * {@hide}
      * Returns Gateway address
      */
-    public String getActiveGateway(String apnType) {
-        return mPhone.getGateway(apnType);
+    public String getActiveGateway(String apnType, String ipv) {
+        return mPhone.getGateway(apnType, Enum.valueOf(IPVersion.class, ipv));
     }
 
 
