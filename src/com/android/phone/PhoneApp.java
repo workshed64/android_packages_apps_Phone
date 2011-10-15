@@ -235,8 +235,6 @@ public class PhoneApp extends Application implements AccelerometerListener.Orien
 
     private String mVoiceQualityParam;
 
-    private String mVoiceQualityParam;
-
     // add by cytown
     private static final String ACTION_VIBRATE_45 = "com.android.phone.PhoneApp.ACTION_VIBRATE_45";
     private CallFeaturesSetting mSettings;
